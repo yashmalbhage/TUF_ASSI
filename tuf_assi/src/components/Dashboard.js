@@ -1,4 +1,3 @@
-// src/components/Dashboard.js
 import React, { useState, useEffect } from 'react';
 import { updateBannerData } from '../services/api';
 
@@ -6,7 +5,8 @@ const Dashboard = ({ bannerData, onUpdate }) => {
   const [formData, setFormData] = useState({
     isVisible: false,
     description: '',
-    link: ''
+    link: '',
+    timer: 1, // Default to 10 seconds
   });
 
   useEffect(() => {
@@ -28,10 +28,6 @@ const Dashboard = ({ bannerData, onUpdate }) => {
     await updateBannerData(formData);
     onUpdate(formData);
   };
-
-  if (!bannerData) {
-    return <div>Loading dashboard...</div>;
-  }
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
@@ -68,6 +64,18 @@ const Dashboard = ({ bannerData, onUpdate }) => {
               type="url"
               name="link"
               value={formData.link}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            />
+          </label>
+        </div>
+        <div>
+          <label className="block">
+            <span>Timer (seconds):</span>
+            <input
+              type="number"
+              name="timer"
+              value={formData.timer}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             />

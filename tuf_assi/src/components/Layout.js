@@ -1,11 +1,10 @@
-// src/components/Layout.js
 import React from 'react';
 import Banner from './Banner';
 
-const Layout = ({ bannerData, children }) => {
+const Layout = ({ bannerData, countdown, children }) => {
   return (
     <div className="min-h-screen flex flex-col">
-      {bannerData && <Banner bannerData={bannerData} />}
+      {bannerData && <Banner bannerData={bannerData} countdown={countdown} />}
       <main className="flex-grow container mx-auto px-4 py-8">
         {children}
       </main>
