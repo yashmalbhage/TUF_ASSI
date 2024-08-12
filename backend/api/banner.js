@@ -22,6 +22,15 @@ const initializeDbConnection = async() => {
 module.exports = async(req, res) => {
     await initializeDbConnection();
 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+        res.status(204).end();
+        return;
+    }
+
     if (req.method === 'GET') {
         try {
             console.log('Attempting to fetch banner data...');
